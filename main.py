@@ -33,7 +33,7 @@
 
 #Hint 4: Create a deal_card() function that uses the List below to *return* a random card.
 #11 is the Ace.
-#cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
 
 #Hint 5: Deal the user and computer 2 cards each using deal_card() and append().
 #user_cards = []
@@ -58,4 +58,20 @@
 #Hint 13: Create a function called compare() and pass in the user_score and computer_score. If the computer and user both have the same score, then it's a draw. If the computer has a blackjack (0), then the user loses. If the user has a blackjack (0), then the user wins. If the user_score is over 21, then the user loses. If the computer_score is over 21, then the computer loses. If none of the above, then the player with the highest score wins.
 
 #Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
+# from replit import clear
+# from art import logo
+import random
 
+player = []
+computer = []
+
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+# play_game = input("Do you want to play a game of Blackjack? Type 'y' or 'no': ")
+
+# print(logo)
+
+player = random.choices(cards, k=2)
+computer = random.choices(cards, k=2)
+print(f"Your cards: {player}")
+print(f"Computeur's first card: {computer[0]}")
