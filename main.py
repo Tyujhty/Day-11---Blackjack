@@ -62,16 +62,23 @@
 # from art import logo
 import random
 
-player = []
-computer = []
+def random_card():
+    return random.choices(cards, k=2)
+
+def is_blackjack(player, computer):
+    player_sum = sum(player)
+    computer_sum = sum(computer)
+
+    print(computer_sum, player_sum)
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 # play_game = input("Do you want to play a game of Blackjack? Type 'y' or 'no': ")
 
 # print(logo)
+player = random_card()
+computer = random_card()
 
-player = random.choices(cards, k=2)
-computer = random.choices(cards, k=2)
 print(f"Your cards: {player}")
 print(f"Computeur's first card: {computer[0]}")
+
