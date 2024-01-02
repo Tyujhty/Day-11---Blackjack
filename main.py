@@ -66,11 +66,27 @@ def random_card():
     return random.choices(cards, k=2)
 
 def is_blackjack(player, computer):
-    player_sum = sum(player)
-    computer_sum = sum(computer)
 
-    print(computer_sum, player_sum)
-
+    list_of_sum = [    
+        {
+        'name': 'player',
+        'sum': sum(player),
+        'cards': player
+    },
+    {
+        'name': 'computer',
+        'sum':  sum(computer),
+        'cards': computer
+    }
+]
+    for element in list_of_sum:
+        if element['sum'] == 21:
+            print(f"Blackjack, {element['name']} wins!")
+        elif element['sum'] > 21:
+            for i, card in enumerate(element['cards']):
+                if card == 11:
+                    element['cards'][i] = 1
+                                
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 # play_game = input("Do you want to play a game of Blackjack? Type 'y' or 'no': ")
@@ -82,3 +98,4 @@ computer = random_card()
 print(f"Your cards: {player}")
 print(f"Computeur's first card: {computer[0]}")
 
+is_blackjack(player, computer)
