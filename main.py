@@ -62,23 +62,27 @@
 # from art import logo
 import random
 
-def random_card():
-    return random.choices(cards, k=2)
+def random_card(num_card):
+    return random.choices(cards, k= num_card)
 
 def is_blackjack(player, computer):
 
     list_of_sum = [    
         {
-        'name': 'player',
+        'name': 'The Player',
         'sum': sum(player),
         'cards': player
     },
     {
-        'name': 'computer',
+        'name': 'The computer',
         'sum':  sum(computer),
         'cards': computer
     }
 ]
+    
+    if (sum(computer) == 21) and (sum(player) == 21):
+        return "It's a draw"
+        
     for element in list_of_sum:
         if element['sum'] == 21:
             print(f"Blackjack, {element['name']} wins!")
@@ -86,16 +90,28 @@ def is_blackjack(player, computer):
             for i, card in enumerate(element['cards']):
                 if card == 11:
                     element['cards'][i] = 1
-                                
+            print(f"{element['name']} loose !")
+
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 # play_game = input("Do you want to play a game of Blackjack? Type 'y' or 'no': ")
 
 # print(logo)
-player = random_card()
-computer = random_card()
 
-print(f"Your cards: {player}")
+player = random_card(2)
+computer = random_card(2)
+
+print(f"Your cards: {player}, your current score: {sum(player)}")
 print(f"Computeur's first card: {computer[0]}")
 
 is_blackjack(player, computer)
+
+pick_another_card = input("Do you want to pick another card ? type 'y' or 'n': ")
+
+if pick_another_card == 'y':
+    player.extend(random_card(1))
+    is_blackjack(player, computer)
+if sum(computer) < 17:
+    computer.extend(random_card(1))
+    is_blackjack(player, computer)
+
